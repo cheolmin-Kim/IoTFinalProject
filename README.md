@@ -12,13 +12,11 @@ the following is a list of developers.
 
 4. **Dongju - Jang \( dj9110@naver.com\)**
 
-
-
 ## 2. Overview
 
-센서의 값을 이용하여 모션으로 드론, 로버, 각종 IoT 장치를 제어할 수 있는 모션 프레임워크
+It is Motion framework for remote control of drones, rovers, and various IoT devices in motion using sensor values.
 
-1. 통신으로 센서값을 받을 수 있는 CoAP 또는 MQTT 사용 라이브러리
+1. 통신으로 센서값을 받을 수 있는 CoAP 또는 MQTT 사용 라이브러리 
 
 2. 모션 인식 개발에 활용 가능한 알고리즘이 포함된 라이브러리
 
@@ -26,15 +24,9 @@ the following is a list of developers.
 
 ## 3. What is this?
 
-
-
 ## 4. Usage
 
-
-
 ## 5. Requirements
-
-
 
 ## 6. Download
 
