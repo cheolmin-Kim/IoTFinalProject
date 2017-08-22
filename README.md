@@ -1,4 +1,4 @@
-# Motion Recognition Framework Using various sensors.
+# Motion Recognition Framework Using various sensors
 
 ## 1. **Developers**
 
@@ -16,7 +16,7 @@ the following is a list of developers.
 
 It is Motion framework for remote control of drones, rovers, and various IoT devices in motion using sensor values.
 
-1. 통신으로 센서값을 받을 수 있는 CoAP 또는 MQTT 사용 라이브러리 
+1. 통신으로 센서값을 받을 수 있는 CoAP 또는 MQTT 사용 라이브러리
 
 2. 모션 인식 개발에 활용 가능한 알고리즘이 포함된 라이브러리
 
