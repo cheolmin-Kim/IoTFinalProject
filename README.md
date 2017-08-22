@@ -18,8 +18,6 @@ It is Motion framework for remote control of drones, rovers, and various IoT dev
 
 센서값을 이용하여 모션으로 드론, 로버, 각종 IoT 장치를 원격 제어할 수 있는 모션 프레임워크
 
-
-
 This framework has the following advantages.
 
 1. 손쉽게 임베디드 장치와 CoAP 통신을 할 수 있는 환경을 제공한다.
@@ -36,15 +34,13 @@ This framework has the following advantages.
 
 It is Motion framework for remote control of drones, rovers, and various IoT devices in motion using sensor values.
 
-This framework basically enables motion recognition using values of gyroscope sensor, ultrasonic sensor, infrared sensor, and button sensor.
+This framework basically enables motion recognition using values of gyroscope sensor, ultrasonic sensor, acceleration sensor, infrared sensor, and button sensor.
 
-1. Motion recognition using gyroscope sensor.
+1. Motion recognition using gyroscope sensor and acceleration sensor.
 
    ![](http://cfile7.uf.tistory.com/image/2445F4395733FF872C8DD9)
 
-If you want to use motion recognition using a gyroscope sensor, you need at least one other sensor to turn on the motion trigger.
-
-
+If you want to use motion recognition with a gyroscope sensor, you need at least one other sensor to turn the motion trigger on and off.
 
 ## 4. Usage
 
