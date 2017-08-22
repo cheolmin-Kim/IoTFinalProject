@@ -4,7 +4,7 @@
 
 the following is a list of developers.
 
-1. [**Chelmin - Kim**](https://github.com/cheolmin-Kim)**  \( kcm7582@naver.com \)**
+1. [**Chelmin - Kim**](https://github.com/cheolmin-Kim) 　**\( kcm7582@naver.com \)**
 
 2. [**Jimin - Kim**](https://github.com/SmileJM)** \( lovelyeu@naver.com \)**
 
@@ -36,19 +36,13 @@ This framework basically enables motion recognition using values of gyroscope se
 
 1. Motion recognition using gyroscope sensor.
 
-     ![](http://cfile7.uf.tistory.com/image/2445F4395733FF872C8DD9)
+   ![](http://cfile7.uf.tistory.com/image/2445F4395733FF872C8DD9)
 
 If you want to use motion recognition using a gyroscope sensor, you need at least one other sensor to turn on the motion trigger.
 
-
-
 This framework has the following advantages.
 
-
-
 ## 4. Usage
-
-
 
 ## 5. Requirements
 
