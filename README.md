@@ -2,6 +2,8 @@
 
 ## 1. **Developers**
 
+the following is a list of developers.
+
 1. **Chelmin - Kim**
 
 2. **Jimin - Kim**
@@ -20,11 +22,15 @@
 
 3. 모션 프레임워크의 라이브러리 소개와 사용법 홈페이지
 
-## 3. Manual
+## 3. What is this?
 
 
 
-[sdaf](/chapter1.md)
+## 4. Tutorial
+
+## 5. Requirements
+
+## 6. Download
 
 
 
