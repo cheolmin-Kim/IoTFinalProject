@@ -4,13 +4,15 @@
 
 the following is a list of developers.
 
-1. **Chelmin - Kim**
+1. **Chelmin - Kim  \( kcm7582@naver.com \)**
 
-2. **Jimin - Kim**
+2. **Jimin - Kim \( lovelyeu@naver.com \)**
 
-3. **Hwasung - Seo**
+3. **Hwasung - Seo \( ghktjddl3@naver.com \)**
 
-4. **Dongju - Jang**
+4. **Dongju - Jang \( dj9110@naver.com\)**
+
+
 
 ## 2. Overview
 
@@ -26,9 +28,13 @@ the following is a list of developers.
 
 
 
-## 4. Tutorial
+## 4. Usage
+
+
 
 ## 5. Requirements
+
+
 
 ## 6. Download
 
