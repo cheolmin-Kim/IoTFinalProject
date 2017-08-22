@@ -10,7 +10,7 @@ the following is a list of developers.
 
 3. [**Hwasung - Seo**](https://github.com/Marsseo)**\( ghktjddl3@naver.com \)**
 
-4. [**Dongju - Jang**](https://github.com/Jdongju)** \( dj9110@naver.com\)**
+4. [**Dongju - Jang**](https://github.com/Jdongju)  **\( dj9110@naver.com\)**
 
 ## 2. Overview
 
