@@ -18,7 +18,7 @@ It is Motion framework for remote control of drones, rovers, and various IoT dev
 
 센서값을 이용하여 모션으로 드론, 로버, 각종 IoT 장치를 원격 제어할 수 있는 모션 프레임워크
 
-1. CoAP 통신을 할 수 있는 환경을 제공
+1. 손쉽게 임베디드 장치와 CoAP 통신을 할 수 있는 환경을 제공
 
 2. 모션 인식 개발에 활용 가능한 알고리즘이 포함된 라이브러리
 
