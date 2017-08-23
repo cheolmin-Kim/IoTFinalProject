@@ -171,7 +171,15 @@ difference 배열은 0번 인덱스에 해당 각도가 들어온 순서가 입�
 
 ## 5. Requirements
 
+* 프레임 워크를 동작하기 위하여 함께 추가해야 할 jar 파일들
 
+
+
+![](/assets/geimport.png)
+
+![](/assets/seeeeeeeeimport.png)
+
+![](/assets/eimeport.png)
 
 ## 6. Download
 
