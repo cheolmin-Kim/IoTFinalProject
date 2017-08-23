@@ -72,7 +72,35 @@ This framework basically enables motion recognition using values of gyroscope se
 
 ![](/assets/cap.PNG)
 
-위의 그림과 같이 임베디드 장치를 손이나 팔 위에 올려놓고 팔을 앞으로 뻗었을 때를 기본 상태로 간주한다. 해당 상태가 되었을 때 yaw축 , roll축 , pitch축 각각은 180도가 되도록 하도록 클라이언트에서 셋팅하여 서버로 값을 전송해야 한다. yaw축
+위의 그림과 같이 임베디드 장치를 손이나 팔 위에 올려놓고 팔을 앞으로 뻗었을 때를 기본 상태로 간주한다. 해당 상태가 되었을 때 yaw축 , roll축 , pitch축 각각은 180도가 되도록 하고 각각의 각의 범위는 0도에서 360도가 되도록 클라이언트에서 셋팅하여 서버로 값을 전송해야 한다. yaw축은 0도에서 360도 까지의 범위만 유지하고 정확히 180도가 되지 않더라도 모션 인식이 동작하는데 무리 없도록 하는 솔루션을 제공한다. 따라서 yaw축에 Drift 현상이 발생 하더라도 모션을 인식하는 것에 큰 지장을 주지 않도록 하였다.
+
+클라이언트에서 전송하는 각각의 값은 서로에게 영향을 주지 않고 독립적인 상태였을 때 가장 이상적인 모션 인식 알고리즘을 만들 수 있다. 따라서 클라이언트 측에서 되도록 신경써서 값을 독립적이며 정확하게 보내 주도록 하는 것을 권장한다.
+
+프레임 워크에서는 CoAP 통신이 가능하도록 Server 환경이 갖추어져 있으며 따라서 클라이언트 측에서는 해당 리소스로 3축의 값을 전송만 해주면 된다.
+
+3축의 값을 전송받는 리소스 이름은 gyroscope 이며 post 방식으로 {"sensor":"gyroscope","yawAngle":"value","pitchAngle":"value","rollAngle":"value"}  라는 Json 형태의 데이터를 보내줘야 한다.
+
+또한 , post방식으로 쿼리 스트링 형태로 데이터를 전송 해도 된다.
+
+sensor=gyroscope&yawAngle=value&pitchAngle=value&rollAngle=value 와 같이 각 축의 value 값을 보내줘야 한다.
+
+
+
+
+
+위의 코드는 CoAP Server측에 등록되어 있는 리소스의 이름이고 
+
+우리 Repository의 Client4MR 프로젝트는 테스트를 위해 임베디드 장치에서 CoAP 클라이언트 부분으로 서버에 값을 전송
+
+
+
+
+
+
+
+우리의 프레임 워크는 CoAP 통신을 간단한 코드로 구현 가능하도록 해준다.
+
+
 
 ## 5. Requirements
 
