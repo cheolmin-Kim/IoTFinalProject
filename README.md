@@ -94,6 +94,12 @@ sensor=gyroscope&yawAngle=value&pitchAngle=value&rollAngle=value 와 같이 각 
 
 자세한 것은 Client4MR 프로젝트를 참고하면 될 것이다.
 
+우리 Repository의 CoapClient\_Android 프로젝트에는 휴대폰의 센서를 이용하여 3개의 축을 보내주는 안드로이드 어플의 코드가 있다. 해당 어플을 휴대폰에 설치하고 동작해 보면 아래와 같은 어플 화면을 볼 수 있다.
+
+![](/assets/seseimport.png)
+
+ 프레임워크를 활용하여 만든 CoAP 서버가 동작하는 장치의 IP를 입력하고 IP 입력 버튼을 눌러주면 해당 장치로 3축의 각도 값을 실시간으로 보내주게 된다. Trigger 버튼을 누르게 되면 트리거를 On/Off 시킬 수 있고, 각도를 활용한 모션인식을 했을 때 인식된 모션의 이름이 화면에 뜨도록 하였다.
+
 #### ▶ Tutorial
 
 ![](/assets/import2.png)
@@ -136,25 +142,38 @@ Action 클래스를 만들면서 재정의 된 메소드로 넘어 오는 매개
 * button 리소스로 전송된 button 상태가 Off로 되었을때 트리거가 Off된다.
 * infraredray 리소스로  전송된 거리 값이 10 이하가 되었을 때 트리거가 Off 된다.
 
-
-
 트리거가 off 되고 난 이후 동작할 3단계에서는 모션을 인식하는 과정이 진행 되는데 여기서 사용자가 직접 모션을 인식할 수 있는 알고리즘을 작성하여 동작하도록 할 수 있다.
 
 우선 각도의 변화량을 확인하기를 원하는 각도의 구간을 정하고 해당 각도의 구간 안에서 변화되는 각도의 변화량의 값의 범위를 리스트에 입력하여 캐치할 수 있도록 한다.
 
 ![](/assets/asdfasdfimport.png)
 
-위의 이미지와 같이 배열 형태로 \[yaw min\(0\), yaw max\(1\), roll min\(2\) , roll max\(3\),pitch min\(4\),pitch max\(5\), yaw Gap Min\(6\),yaw Gap Max\(7\),roll GapMin \(8\),roll Gap Max \(9\),pitch Gap Min \(10\), pitch Gap Max\(11\)\] 과 같이 12개의 숫자를 입력해 준다. 이때 해당 사항을 고려하지 않고 캐치 하고 싶을 경우 max와 min에 각각 0을 넣어주면 된다.
+위의 이미지와 같이 배열 형태로 \[yaw min\(0\), yaw max\(1\), roll min\(2\) , roll max\(3\),pitch min\(4\),pitch max\(5\), yaw Gap Min\(6\),yaw Gap Max\(7\),roll GapMin \(8\),roll Gap Max \(9\),pitch Gap Min \(10\), pitch Gap Max\(11\)\]  
+ 과 같이 12개의 숫자를 입력해 준다. 이때 해당 사항을 고려하지 않고 캐치 하고 싶을 경우 max와 min에 각각 0을 넣어주면 된다.
 
-이렇게 입력된 조건을 고려하여 모션 트리거 ON과 Off 사이에 전송받은 각각의 축들의 값을 확인하여 만약 조건을 만족하면 각도의 변화량이 크기가 4인 difference 배열 안에 입력되어 진다. 이때 조건을 만족하지 않으면 0의 값이 입력되어져 나온다. 
+이렇게 입력된 조건을 고려하여 모션 트리거 ON과 Off 사이에 전송받은 각각의 축들의 값을 확인하여 만약 조건을 만족하면 각도의 변화량이 크기가 4인 difference 배열 안에 입력되어 진다. 이때 조건을 만족하지 않으면 0의 값이 입력되어져 나온다.
 
-difference 배열은 0번 인덱스에 해당 각도가 들어온 순서가 입력되며, 1번 인덱스에 yaw축 각의 변화량, 2번 인덱스에 roll축 각의 변화량, 3번 인덱스에 pitch축 각의 변화량이 입력되어진다. 이 difference 배열은 트리거가 on, off되었을 때 사이에 전송받은 횟수 만큼 만들어져 나중에 사용되어 진다. 이 값들은 differenceResultList에 yawRollPitchRangeList의 인덱스 번호와 동일한 인덱스 번호로 differenceResultList에 difference를 담고있는 리스트로 추가되어져 나온다. 따라서 모션을 만드는 알고리즘을 넣고 싶다면 조건을 입력해 놓은 yawRollPitchRangeList의 인덱스와 동일한 인덱스 값을 가진 differenceResultList의 엘리먼트를 가져오면 된다. 이 엘리먼트는 difference 배열을 담고있는 리스트 형태일 것이고, 해당 리스트의 각각의 엘리먼트들인 difference 배열을 꺼내어 필요한 값을 꺼내어 사용하면 된다. 이와 같은 작업은 GyroMotionInterface를 구현한 클래스를 생성하여 gyroMotion\(List&lt;List&gt; differenceResultList, Map&lt;String, Integer&gt; motionMap\) 안에서 해주면 된다. 이때 캐치 하고자 하는 값들을 잡을 수 있는 알고리즘을 작성하고 캐치한 값들의 수를 세어준다. 이렇게 다 세어진 수들은 해당 메소드의 파라미터인 Map안에 모션이름을 키값으로 하고 총 세어진 카운트 값을 Value로 하여 넣어주면 된다. 아래 코드를 참고하면 될것이다. 
+difference 배열은 0번 인덱스에 해당 각도가 들어온 순서가 입력되며, 1번 인덱스에 yaw축 각의 변화량, 2번 인덱스에 roll축 각의 변화량, 3번 인덱스에 pitch축 각의 변화량이 입력되어진다. 이 difference 배열은 트리거가 on, off되었을 때 사이에 전송받은 횟수 만큼 만들어져 나중에 사용되어 진다. 이 값들은 differenceResultList에 yawRollPitchRangeList의 인덱스 번호와 동일한 인덱스 번호로 differenceResultList에 difference를 담고있는 리스트로 추가되어져 나온다. 따라서 모션을 만드는 알고리즘을 넣고 싶다면 조건을 입력해 놓은 yawRollPitchRangeList의 인덱스와 동일한 인덱스 값을 가진 differenceResultList의 엘리먼트를 가져오면 된다. 이 엘리먼트는 difference 배열을 담고있는 리스트 형태일 것이고, 해당 리스트의 각각의 엘리먼트들인 difference 배열을 꺼내어 필요한 값을 꺼내어 사용하면 된다. 이와 같은 작업은 GyroMotionInterface를 구현한 클래스를 생성하여 gyroMotion\(List&lt;List&gt; differenceResultList, Map&lt;String, Integer&gt; motionMap\) 안에서 해주면 된다. 이때 캐치 하고자 하는 값들을 잡을 수 있는 알고리즘을 작성하고 캐치한 값들의 수를 세어준다. 이렇게 다 세어진 수들은 해당 메소드의 파라미터인 Map안에 모션이름을 키값으로 하고 총 세어진 카운트 값을 Value로 하여 넣어주면 된다. 아래 코드를 참고하면 될것이다.
 
 ![](/assets/imㄴㅇㄹport.png)
 
-만약 yawRollPitchRangeList를 다 비우고 위와 같이 모션을 추가해주는 과정을 하지 않는다면 프레임 워크에 기본으로 탑재되어 있는 모션들이 인식되어 질 것이다. 
+만약 yawRollPitchRangeList를 다 비우고 위와 같이 모션을 추가해주는 과정을 하지 않는다면 프레임 워크에 기본으로 탑재되어 있는 모션들이 인식되어 질 것이다. 디폴트로 설정되어 있는 모션들은 다음과 같다.
+
+* 위
+* 아래
+* 왼쪽
+* 오른쪽
+* Zigzag 모션
+* N 모션
+* Pitch축 오른쪽 회전
+* Pitch축 왼쪽 회전
+* V모션
+
+
 
 ## 5. Requirements
+
+
 
 ## 6. Download
 
