@@ -24,11 +24,15 @@ This framework has the following advantages.
 
 2. 모션 인식 개발에 활용 가능한 알고리즘이 포함되어 있다.
 
-3. 모션 프레임워크를 이용하는 사용자를 위해 Javadoc을 홈페이지에 기재 하여 놓았다.
+3. 모션 프레임워크를 이용하는 사용자를 위해 Tutorial이 만들어져 있으며 Javadoc을 홈페이지에 기재 하여 놓았다.
 
-4. 사용자의 환경에 맞게 조건을 변경 가능 하도록 하였으며 , Overriding하여 직접 모션 알고리즘을 넣을 수 있도록 하였다.
+4. 사용자의 환경에 맞게 조건을 변경하여 사용 가능 하도록 하였고 Overriding하여 직접 모션 알고리즘을 넣을 수 있도록 하였다.
 
-5. 웹 사이트에서 클라이언트인 임베디드 장치에 연결된 센서들의 현재 상태를 체크 해볼 수 있도록 해준다.
+5. Gyroscope Sensor의 특성상 yaw축에 Drift 현상이 발생하는데, 이럴 경우에도 모션인식이 가능하도록 솔루션을 제공한다.
+
+6. 해당 프레임 워크의 전용 홈페이지를 개설하여 모션 인식 관련한 활발한 커뮤니티가 이루어 질 수 있도록 하였다.
+
+7. 웹 사이트에서 클라이언트인 임베디드 장치에 연결된 센서들의 현재 상태를 체크 해볼 수 있도록 해준다.
 
 ## 3. What is this?
 
@@ -52,8 +56,6 @@ This framework basically enables motion recognition using values of gyroscope se
 
 센서의 On/ Off 상태를 프레임 워크를 사용하여 개발한 Server 측으로 String으로 전송해 주게 되면 상태 값에 따라 이벤트를 줄 수 있도록 하였다. 상태를 측정하기 위해 사용될 수 있는 센서는 터치 센서 , 버튼 센서 등이 있다.
 
-
-
 #### ▶ 프로세스
 
 이 프레임 워크의 동작 프로세스는 3단계로 나누어 집니다.
@@ -70,11 +72,9 @@ This framework basically enables motion recognition using values of gyroscope se
 
 ![](/assets/cap.PNG)
 
-위의 그림과 같이 임베디드 장치를 손이나 팔 위에 올려놓고 팔을 앞으로 뻗었을 때를 기본 상태로 간주한다. 해당 상태가 되었을 때 yaw축 , roll축
+위의 그림과 같이 임베디드 장치를 손이나 팔 위에 올려놓고 팔을 앞으로 뻗었을 때를 기본 상태로 간주한다. 해당 상태가 되었을 때 yaw축 , roll축 , pitch축 각각은 180도가 되도록 하도록 클라이언트에서 셋팅하여 서버로 값을 전송해야 한다. yaw축
 
 ## 5. Requirements
-
-
 
 ## 6. Download
 
