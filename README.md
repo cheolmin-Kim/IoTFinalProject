@@ -84,15 +84,9 @@ This framework basically enables motion recognition using values of gyroscope se
 
 sensor=gyroscope&yawAngle=value&pitchAngle=value&rollAngle=value 와 같이 각 축의 value 값을 보내줘야 한다.
 
-
-
 * 거리 값을 입력 받는 리소스 이름은 infraredray이며 post 방식으로 {"sensor":"infraredray","distance":"value"} 의 형태로 Json 데이터를 보내줘야 한다. 또 다른 거리 값을 입력 받는 리소스 이름은 ultrasonic 이며 post 방식으로 {"sensor":"ultrasonic","distance":"value"} 의 형태로 Json 데이터를 보내줘야 한다.
 
 * On/Off 값을 입력 받는 리소스 이름은 infraredray이며 post 방식으로 {"sensor":"infraredray","status":"status"} 의 형태로 Json 데이터를 보내줘야 한다. status의 value 값은 해당 모션의 상태를 보내게 되며 on이나 off를 보내주면 된다. 또한, get 방식으로 쿼리 스트링을 전송 할 수 있다. sensor=button&status=status 의 형태로 status의 value 값으로 센서 상태\(on,off\)를 보내주면 된다.
-
-
-
-
 
 ![](/assets/simport.png)
 
@@ -102,9 +96,21 @@ sensor=gyroscope&yawAngle=value&pitchAngle=value&rollAngle=value 와 같이 각 
 
 자세한 것은 Client4MR 프로젝트를 참고하면 될 것이다.
 
-#### ▶ Server
+#### ▶ Tutorial
 
-우리의 프레임 워크는 CoAP 통신을 간단한 코드로 구현 가능하도록 해준다.
+![](/assets/import2.png)
+
+최종으로 인식된 모션 값과 실행하고자 하는 코드를 매칭 시켜주는 ActionInterface를 구현하고 있는 Action 클래스를 생성해주고 Recognizer 클래스를 생성하면서 매개변수로 넘겨준다.
+
+이 프레임 워크를 사용하면 쉽게 Coap 통신을 할 수 있다. 아래 코드 와 같이 Recognizer 클래스에 있는 start\(\) 메소드를 실행시켜 주는 것으로 Coap 서버가 실행된다.
+
+이후에 기존에 모션 트리거가 실행되지 않은 1단계 부분에서 사용될 트리거를 On 시킬 코드나 다른 센서 활용 코드, 동작하길 원하는 코드들을 작성 할 수 있다. 
+
+![](/assets/sdfsdfimport.png)
+
+![](/assets/ㄴㅇㄹimport.png)
+
+위 코드의 MotionCheck.triggerOnMotionList에 
 
 ## 5. Requirements
 
