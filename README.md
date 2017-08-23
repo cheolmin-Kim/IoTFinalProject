@@ -68,7 +68,7 @@ This framework basically enables motion recognition using values of gyroscope se
 
 ## 4. Usage
 
-#### ▶ 사용 준비
+#### ▶ Client
 
 ![](/assets/cap.PNG)
 
@@ -76,9 +76,9 @@ This framework basically enables motion recognition using values of gyroscope se
 
 클라이언트에서 전송하는 각각의 값은 서로에게 영향을 주지 않고 독립적인 상태였을 때 가장 이상적인 모션 인식 알고리즘을 만들 수 있다. 따라서 클라이언트 측에서 되도록 신경써서 값을 독립적이며 정확하게 보내 주도록 하는 것을 권장한다.
 
-프레임 워크에서는 CoAP 통신이 가능하도록 Server 환경이 갖추어져 있으며 따라서 클라이언트 측에서는 해당 리소스로 3축의 값을 전송만 해주면 된다.
+프레임 워크에서는 CoAP 통신이 가능하도록 Server 환경이 갖추어져 있으며 따라서 클라이언트 측에서는 해당 리소스로 센서의 값을 전송만 해주면 된다.
 
-3축의 값을 전송받는 리소스 이름은 gyroscope 이며 post 방식으로 {"sensor":"gyroscope","yawAngle":"value","pitchAngle":"value","rollAngle":"value"}  라는 Json 형태의 데이터를 보내줘야 한다.
+* 3축의 값을 전송받는 리소스 이름은 gyroscope 이며 post 방식으로 {"sensor":"gyroscope","yawAngle":"value","pitchAngle":"value","rollAngle":"value"}  라는 Json 형태의 데이터를 보내줘야 한다.
 
 또한 , post방식으로 쿼리 스트링 형태로 데이터를 전송 해도 된다.
 
@@ -86,21 +86,25 @@ sensor=gyroscope&yawAngle=value&pitchAngle=value&rollAngle=value 와 같이 각 
 
 
 
+* 거리 값을 입력 받는 리소스 이름은 infraredray이며 post 방식으로 {"sensor":"infraredray","distance":"value"} 의 형태로 Json 데이터를 보내줘야 한다. 또 다른 거리 값을 입력 받는 리소스 이름은 ultrasonic 이며 post 방식으로 {"sensor":"ultrasonic","distance":"value"} 의 형태로 Json 데이터를 보내줘야 한다.
 
-
-위의 코드는 CoAP Server측에 등록되어 있는 리소스의 이름이고 
-
-우리 Repository의 Client4MR 프로젝트는 테스트를 위해 임베디드 장치에서 CoAP 클라이언트 부분으로 서버에 값을 전송
-
+* On/Off 값을 입력 받는 리소스 이름은 infraredray이며 post 방식으로 {"sensor":"infraredray","status":"status"} 의 형태로 Json 데이터를 보내줘야 한다. status의 value 값은 해당 모션의 상태를 보내게 되며 on이나 off를 보내주면 된다. 또한, get 방식으로 쿼리 스트링을 전송 할 수 있다. sensor=button&status=status 의 형태로 status의 value 값으로 센서 상태\(on,off\)를 보내주면 된다.
 
 
 
 
 
+![](/assets/simport.png)
+
+우리 Repository의 Client4MR 프로젝트는 테스트를 위해 임베디드 장치에서 동작하는 client를 만든 것이다.
+
+이 프로젝트는 아래 그림과 같이 각도 값을 보내주고 있으며 post 방식으로 보내주고 있다.
+
+자세한 것은 Client4MR 프로젝트를 참고하면 될 것이다.
+
+#### ▶ Server
 
 우리의 프레임 워크는 CoAP 통신을 간단한 코드로 구현 가능하도록 해준다.
-
-
 
 ## 5. Requirements
 
