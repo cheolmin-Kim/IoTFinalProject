@@ -98,7 +98,7 @@ sensor=gyroscope&yawAngle=value&pitchAngle=value&rollAngle=value 와 같이 각 
 
 ![](/assets/seseimport.png)
 
- 프레임워크를 활용하여 만든 CoAP 서버가 동작하는 장치의 IP를 입력하고 IP 입력 버튼을 눌러주면 해당 장치로 3축의 각도 값을 실시간으로 보내주게 된다. Trigger 버튼을 누르게 되면 트리거를 On/Off 시킬 수 있고, 각도를 활용한 모션인식을 했을 때 인식된 모션의 이름이 화면에 뜨도록 하였다.
+프레임워크를 활용하여 만든 CoAP 서버가 동작하는 장치의 IP를 입력하고 IP 입력 버튼을 눌러주면 해당 장치로 3축의 각도 값을 실시간으로 보내주게 된다. Trigger 버튼을 누르게 되면 트리거를 On/Off 시킬 수 있고, 각도를 활용한 모션인식을 했을 때 인식된 모션의 이름이 화면에 뜨도록 하였다.
 
 #### ▶ Tutorial
 
@@ -169,13 +169,13 @@ difference 배열은 0번 인덱스에 해당 각도가 들어온 순서가 입�
 * Pitch축 왼쪽 회전
 * V모션
 
-
-
 ## 5. Requirements
 
 
 
 ## 6. Download
 
+[여기를 눌러주세요.](http://blog.naver.com/kcm7582/221080544867)
 
+링크클릭-&gt;  해당 블로그로 이동 -&gt;  첨부파일을 다운로드
 
