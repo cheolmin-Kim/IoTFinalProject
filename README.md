@@ -14,10 +14,6 @@ the following is a list of developers.
 
 ## 2. Overview
 
-It is Motion framework for remote control of drones, rovers, and various IoT devices in motion using sensor values.
-
-센서값을 이용하여 모션으로 드론, 로버, 각종 IoT 장치를 원격 제어할 수 있는 모션 프레임워크
-
 This framework has the following advantages.
 
 1. 손쉽게 임베디드 장치와 CoAP 통신을 할 수 있는 환경을 제공한다.
@@ -37,6 +33,8 @@ This framework has the following advantages.
 ## 3. What is this?
 
 #### **▶ 설명**
+
+센서값을 이용하여 모션으로 드론, 로버, 각종 IoT 장치를 원격 제어할 수 있는 모션 프레임워크
 
 It is Motion framework for remote control of drones, rovers, and various IoT devices in motion using sensor values.
 
@@ -102,15 +100,59 @@ sensor=gyroscope&yawAngle=value&pitchAngle=value&rollAngle=value 와 같이 각 
 
 최종으로 인식된 모션 값과 실행하고자 하는 코드를 매칭 시켜주는 ActionInterface를 구현하고 있는 Action 클래스를 생성해주고 Recognizer 클래스를 생성하면서 매개변수로 넘겨준다.
 
+Action 클래스를 만들면서 재정의 된 메소드로 넘어 오는 매개변수는 String 타입으로 모션의 이름이 될 것이다. 해당 모션과 매칭 하고자 하는 동작을 작성해 주면 된다.
+
+![](/assets/seimport.png)
+
 이 프레임 워크를 사용하면 쉽게 Coap 통신을 할 수 있다. 아래 코드 와 같이 Recognizer 클래스에 있는 start\(\) 메소드를 실행시켜 주는 것으로 Coap 서버가 실행된다.
 
-이후에 기존에 모션 트리거가 실행되지 않은 1단계 부분에서 사용될 트리거를 On 시킬 코드나 다른 센서 활용 코드, 동작하길 원하는 코드들을 작성 할 수 있다. 
+이후에 기존에 모션 트리거가 실행되지 않은 1단계 부분에서 동작될 메소드를 설정해 줄 수 있다.예를들면, 트리거를 On 시킬 코드나 다른 센서 활용 코드, 동작하길 원하는 코드들을 작성 할 수 있다.
 
 ![](/assets/sdfsdfimport.png)
 
 ![](/assets/ㄴㅇㄹimport.png)
 
-위 코드의 MotionCheck.triggerOnMotionList에 
+위 코드와 같이 MotionCheck.triggerOnMotionList에 TriggerMotionInterface를 구현한 클래스를 생성하여 추상 메소드를 재정의 한후에 사용하고 싶은 타입의 메소드만 적어주고 사용하지 않는 메소드는 비어있도록 놔두면 된다.
+
+위와같은 코드를 작성 하지 않으면 미리 설정해 둔 세가지 메소드가 동작하게 될것이다.
+
+디폴트로 설정되어 있는 조건은 아래와 같다.
+
+* gyroscope리소스로 전송된 pitch 축의 각도가 130도 이하가 되었다가 170도 이상으로 되었을 때 트리거가 On 된다.
+* button 리소스로 전송된 button 상태가 On로 되었을때 트리거가 On된다.
+* infraredray 리소스로  전송된 거리 값이 10 이하가 되었을 때 트리거가 On 된다.
+
+모션 트리거가 On 되고 난 이후 2단계로 전환 되었을 때 동작될 메소드를 설정해줄수 있다. 예를 들면, 트리거를 off 시킬 메소드나 다른 센서 활용 코드,동작하길 원하는 코드들을 작성 할 수 있다.
+
+![](/assets/sdfimport.png)
+
+위 코드와 같이 MotionCheck.triggerOffMotionList에 TriggerMotionInterface를 구현한 클래스를 생성하여 추상 메소드를 재정의 한후에 사용하고 싶은 타입의 메소드만 적어주고 사용하지 않는 메소드는 비어있도록 놔두면 된다.
+
+위와같은 코드를 작성 하지 않으면 미리 설정해 둔 세가지 메소드가 동작하게 될것이다.
+
+디폴트로 설정되어 있는 조건은 아래와 같다.
+
+* gyroscope리소스로 전송된 pitch 축의 각도가 130도 이하가 되었다가 170도 이상으로 되었을 때 트리거가 Off 된다.
+* button 리소스로 전송된 button 상태가 Off로 되었을때 트리거가 Off된다.
+* infraredray 리소스로  전송된 거리 값이 10 이하가 되었을 때 트리거가 Off 된다.
+
+
+
+트리거가 off 되고 난 이후 동작할 3단계에서는 모션을 인식하는 과정이 진행 되는데 여기서 사용자가 직접 모션을 인식할 수 있는 알고리즘을 작성하여 동작하도록 할 수 있다.
+
+우선 각도의 변화량을 확인하기를 원하는 각도의 구간을 정하고 해당 각도의 구간 안에서 변화되는 각도의 변화량의 값의 범위를 리스트에 입력하여 캐치할 수 있도록 한다.
+
+![](/assets/asdfasdfimport.png)
+
+위의 이미지와 같이 배열 형태로 \[yaw min\(0\), yaw max\(1\), roll min\(2\) , roll max\(3\),pitch min\(4\),pitch max\(5\), yaw Gap Min\(6\),yaw Gap Max\(7\),roll GapMin \(8\),roll Gap Max \(9\),pitch Gap Min \(10\), pitch Gap Max\(11\)\] 과 같이 12개의 숫자를 입력해 준다. 이때 해당 사항을 고려하지 않고 캐치 하고 싶을 경우 max와 min에 각각 0을 넣어주면 된다.
+
+이렇게 입력된 조건을 고려하여 모션 트리거 ON과 Off 사이에 전송받은 각각의 축들의 값을 확인하여 만약 조건을 만족하면 각도의 변화량이 크기가 4인 difference 배열 안에 입력되어 진다. 이때 조건을 만족하지 않으면 0의 값이 입력되어져 나온다. 
+
+difference 배열은 0번 인덱스에 해당 각도가 들어온 순서가 입력되며, 1번 인덱스에 yaw축 각의 변화량, 2번 인덱스에 roll축 각의 변화량, 3번 인덱스에 pitch축 각의 변화량이 입력되어진다. 이 difference 배열은 트리거가 on, off되었을 때 사이에 전송받은 횟수 만큼 만들어져 나중에 사용되어 진다. 이 값들은 differenceResultList에 yawRollPitchRangeList의 인덱스 번호와 동일한 인덱스 번호로 differenceResultList에 difference를 담고있는 리스트로 추가되어져 나온다. 따라서 모션을 만드는 알고리즘을 넣고 싶다면 조건을 입력해 놓은 yawRollPitchRangeList의 인덱스와 동일한 인덱스 값을 가진 differenceResultList의 엘리먼트를 가져오면 된다. 이 엘리먼트는 difference 배열을 담고있는 리스트 형태일 것이고, 해당 리스트의 각각의 엘리먼트들인 difference 배열을 꺼내어 필요한 값을 꺼내어 사용하면 된다. 이와 같은 작업은 GyroMotionInterface를 구현한 클래스를 생성하여 gyroMotion\(List&lt;List&gt; differenceResultList, Map&lt;String, Integer&gt; motionMap\) 안에서 해주면 된다. 이때 캐치 하고자 하는 값들을 잡을 수 있는 알고리즘을 작성하고 캐치한 값들의 수를 세어준다. 이렇게 다 세어진 수들은 해당 메소드의 파라미터인 Map안에 모션이름을 키값으로 하고 총 세어진 카운트 값을 Value로 하여 넣어주면 된다. 아래 코드를 참고하면 될것이다. 
+
+![](/assets/imㄴㅇㄹport.png)
+
+만약 yawRollPitchRangeList를 다 비우고 위와 같이 모션을 추가해주는 과정을 하지 않는다면 프레임 워크에 기본으로 탑재되어 있는 모션들이 인식되어 질 것이다. 
 
 ## 5. Requirements
 
