@@ -34,8 +34,6 @@ This framework has the following advantages.
 
 #### **▶ 설명**
 
-센서값을 이용하여 모션으로 드론, 로버, 각종 IoT 장치를 원격 제어할 수 있는 모션 프레임워크
-
 It is Motion framework for remote control of drones, rovers, and various IoT devices in motion using sensor values.
 
 This framework basically enables motion recognition using values of gyroscope sensor, ultrasonic sensor, acceleration sensor, infrared sensor, and button sensor.
@@ -68,7 +66,7 @@ This framework basically enables motion recognition using values of gyroscope se
 
 #### ▶ Client
 
-![](http://postfiles3.naver.net/MjAxNzA4MjRfMjI4/MDAxNTAzNTUxMTk4NDU0.6HMlCvUMVpZbabsHB8dsP5tIf0genckfsjrMEVKqIdUg.IZT9nBJVeipVqRefdKnX4nOJe5YIwtbm8ZYS4JjgX84g.PNG.kcm7582/%EA%B7%B8%EB%A6%BC1.png?type=w3)
+![](http://postfiles3.naver.net/MjAxNzA4MjRfMjI4/MDAxNTAzNTUxMTk4NDU0.6HMlCvUMVpZbabsHB8dsP5tIf0genckfsjrMEVKqIdUg.IZT9nBJVeipVqRefdKnX4nOJe5YIwtbm8ZYS4JjgX84g.PNG.kcm7582/그림1.png?type=w3)
 
 위의 그림과 같이 임베디드 장치를 손이나 팔 위에 올려놓고 팔을 앞으로 뻗었을 때를 기본 상태로 간주한다. 해당 상태가 되었을 때 yaw축 , roll축 , pitch축 각각은 180도가 되도록 하고 각각의 각의 범위는 0도에서 360도가 되도록 클라이언트에서 셋팅하여 서버로 값을 전송해야 한다. yaw축은 0도에서 360도 까지의 범위만 유지하고 정확히 180도가 되지 않더라도 모션 인식이 동작하는데 무리 없도록 하는 솔루션을 제공한다. 따라서 yaw축에 Drift 현상이 발생 하더라도 모션을 인식하는 것에 큰 지장을 주지 않도록 하였다.
 
